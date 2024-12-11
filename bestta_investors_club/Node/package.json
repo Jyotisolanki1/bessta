@@ -1,0 +1,36 @@
+{
+    "name": "bestta",
+    "version": "1.0.0",
+    "description": "",
+    "main": "bestta.js",
+    "scripts": {
+        "start": "node bestta.js",
+        "dev": "nodemon bestta.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.6.5",
+        "bcrypt": "^5.1.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "export-to-csv": "^1.2.2",
+        "express": "^4.18.2",
+        "fast-csv": "^4.3.6",
+        "firebase-admin": "^12.6.0",
+        "form-data": "^4.0.0",
+        "i18n": "^0.15.1",
+        "joi": "^17.11.0",
+        "jsonwebtoken": "^9.0.2",
+        "moment": "^2.29.4",
+        "mongoose": "^8.0.1",
+        "mongoose-aggregate-paginate-v2": "^1.0.6",
+        "mongoose-paginate-v2": "^1.7.4",
+        "multer": "^1.4.5-lts.1",
+        "node-cron": "^3.0.3",
+        "nodemailer": "^6.9.7",
+        "nodemon": "^3.0.1",
+        "stripe": "^14.8.0"
+    }
+}

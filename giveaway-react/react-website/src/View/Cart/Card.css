@@ -1,0 +1,263 @@
+.cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cart-icon {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-icon .cart-count {
+    background-color: #FF0000;
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin-left: 10px;
+  }
+  
+  .cart-popup {
+    display: none;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 500px;
+    height: 400px;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    font-family: Arial, sans-serif;
+    color: #4A4A4A;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cart-icon-wrapper:hover .cart-popup {
+    display: block;
+  }
+  
+  .cart-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    
+  }
+  .item-container{
+    height: 180px;
+    overflow-y: auto;
+  }
+  /* .cart-item img {
+    width: 10px;
+    height: 50px;
+    margin-right: 10px;
+  } */
+  
+  .item-details {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+  }
+  
+  .item-name {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .item-quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+
+  
+  .item-quantity span {
+    margin: 0 10px;
+  }
+  
+  .item-price {
+font-size: 15px;
+  }
+  
+  .remove-button {
+    background: none;
+    border: none;
+    color: #FF0000;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+    padding: 0;
+    margin-top: 5px;
+  }
+  .left-cart{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 8
+  }
+  .right-cart{
+    display: flex;
+    margin-left: auto;
+    flex-direction: column;
+    flex-grow: 4;
+    margin-left: 70%;
+  }
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .view-cart-button, .checkout-button {
+    background-color: #f28500;
+    color: #fff;
+   font-size: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    width: 45%;
+    padding: 2%;
+  }
+
+  
+  .cart-popup::before {
+    content: "";
+    position: absolute;
+    right: 22px;
+    top: -5px;
+    border-right: 5px solid transparent;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid #b5b5b5;
+    border-left: 1px solid #b5b5b5;
+    background: #fff;
+    transform: rotate(45deg
+);
+    transition: all .4s ease-in-out;
+}
+/* Cart.css */
+
+.cart-container {
+  margin-top: 20px;
+}
+
+.cart-card {
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.free-shipping-text {
+  font-size: 20px;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+.quantity-btn {
+  margin: 0 5px;
+}
+
+.quantity-input {
+  width: 40px;
+  text-align: center;
+  display: inline-block;
+}
+
+.remove-text {
+  color: #6b6d6e;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 15px;
+}
+.remove-text:hover{
+  color: #73badd;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 15px;
+}
+.total-row {
+  margin-top: 20px;
+}
+
+.button-row {
+  margin-top: 20px;
+}
+
+.view-cart-btn, .checkout-btn {
+  width: 100%;
+}
+
+.cart-items{
+  height: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.text-center{
+  margin-bottom: 30px;
+}
+.titleText{
+  font-size: 15px;
+  color: #000;
+  font-weight: 600;
+ margin: 0;
+}
+.card-btn{
+  background-color: #f28500;
+  padding: 4px;
+}
+.view-cart-btn, .checkout-btn{
+  background-color: #f28500;
+  padding: 15px;
+}
+
+.minus, .plus, .quantity {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.total, .total-text{
+ color: #000;
+ font-weight: 600;
+ font-size: 20px;
+}
+
+.view-cart-btn {
+  background-color: #f28500; 
+  color: #fff; 
+}
+
+.view-cart-btn:hover {
+  background-color: #f28500; 
+  color: #fff;
+}
+
+
+.checkout-btn {
+  background-color: #f28500; 
+  color: #fff; 
+}
+
+
+.checkout-btn:hover {
+  background-color: #f28500;
+  color: #fff; 
+}

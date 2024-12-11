@@ -1,0 +1,119 @@
+const nodeMailer = require('nodemailer')
+
+const sendEmail = async (name = 'Guest', email, subject, body) => {
+    // return true
+    const imageMatches = body.match(
+        /<img[^>]+src="data:image\/[^;]+;base64[^">]+"[^>]*>/g
+    )
+    const images = imageMatches
+        ? imageMatches.map((imgTag) => {
+              const srcMatch = imgTag.match(/src="([^"]+)"/)
+              return srcMatch ? srcMatch[1] : null
+          })
+        : []
+    const message = `
+            <div style="background-color:#eded47;padding:10px; ">
+                <div
+                style="width: 60%; margin: 20px; padding: 20px; background-color:white;margin-left:auto; margin-right:auto; border-radius:20px;">
+                <div style="border-bottom: 2px solid gray; padding-bottom: 10px; text-align:center;">
+                    <img src="cid:unique@appleImage" alt="apple-icon">
+                </div>
+                <p style="font-weight: bold;">
+                    Dear ${name}
+                </p><br />
+                <p>
+                    ${body}
+                </p><br />
+                <div>
+                    <h4 style="margin:0;padding:0;">Regards</h4>
+                    <p style="margin:0;padding:0;">Team Bestta investers club</p>
+                </div>
+
+                </div>
+            </div>
+        `
+
+    const transporter = nodeMailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        secure: true,
+        auth: {
+            user: process.env.SMTP_MAIL,
+            pass: process.env.SMTP_PASSWORD,
+        },
+    })
+    const mailOptions = {
+        from: process.env.SMTP_MAIL,
+        to: email,
+        subject: subject,
+        html: message,
+        attachments: images.map((image, index) => ({
+            filename: `image${index + 1}.png`,
+            content: image.split('base64,')[1],
+            encoding: 'base64',
+        })),
+    }
+
+    return await transporter.sendMail(mailOptions)
+}
+
+const helpcentermail = async (name = 'Guest', email, subject, body) => {
+    // return true
+    const message = `
+            <div style="background-color:#eded47;padding:10px; ">
+                <div
+                style="width: 60%; margin: 20px; padding: 20px; background-color:white;margin-left:auto; margin-right:auto; border-radius:20px;">
+                <div style="border-bottom: 2px solid gray; padding-bottom: 10px; text-align:center;">
+                    <img src="cid:unique@appleImage" alt="apple-icon">
+                </div>
+                <p style="font-weight: bold;">
+                 You have  New query from ${name}
+                </p><br />
+                 <tr>
+              <th>Name</th>
+              <td>${name}</td>
+              </tr>
+              <tr>
+              <th>Email</th>
+              <td>${email}</td>
+              </tr>
+              <tr>
+              <th>Message</th>
+              <td>${body}</td>
+              </tr><br />
+                <div>
+                    <h4 style="margin:0;padding:0;">Regards</h4>
+                    <p style="margin:0;padding:0;">${name}</p>
+                </div>
+
+                </div>
+            </div>
+        `
+
+    const transporter = nodeMailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        secure: true,
+        auth: {
+            user: process.env.SMTP_MAIL,
+            pass: process.env.SMTP_PASSWORD,
+        },
+    })
+    const mailOptions = {
+        from: email,
+        to: 'vaibhavrekhate.webmobril@gmail.com',
+        subject: subject,
+        html: message,
+        attachments: [
+            {
+                filename: 'logo.png',
+                path: './public/logo.png',
+                cid: 'unique@appleImage',
+            },
+        ],
+    }
+
+    return await transporter.sendMail(mailOptions)
+}
+
+module.exports = { sendEmail, helpcentermail }

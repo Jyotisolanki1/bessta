@@ -1,0 +1,415 @@
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { GetPlansApi, GetPlansLevelApi } from '../Slices/PlanSlice';
+import { GetPlanCategoriesApi } from '../Slices/PlanCategorySlice';
+import Loader from './Loader';
+import parse from 'html-react-parser';
+import ReactReadMoreReadLess from 'react-read-more-read-less';
+import { SetSubscriptionPlan } from '../Slices/CommonSlice';
+import { Nav, NavItem, NavLink, TabContent, TabPane, Row, Col, Card, CardTitle, CardText, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
+const Cards = () => {
+  const dispatch = useDispatch();
+  const { loading, PlansData, PlansLevelLoading, PlansLevelData } = useSelector((state) => state.planAction);
+  const { PlanCategories } = useSelector((state) => state.planCategoryAction);
+
+  const { isAuthenticated, isSubcription } = useSelector((state) => state.loginAction);
+  const [activeTab, setActiveTab] = useState('1');
+  const [firstArray, setFirstArray] = useState([]);
+  const [secondArray, setSecondArray] = useState([]);
+
+  // console.log("🚀 ~ Cards ~ PlansData:", PlansData)
+
+  const tempFirstArray = [];
+  const tempSecondArray = [];
+
+  useEffect(() => {
+    dispatch(GetPlansApi('plans?type=fixed'));
+    dispatch(GetPlansLevelApi());
+  }, []);
+
+  useEffect(() => {
+    // dispatch(GetPlansApi("plans?type=fixed"));
+    const newData = PlansData;
+    newData?.forEach((item, index) => {
+      if (index < 3) {
+        tempFirstArray.push(item);
+      } else {
+        tempSecondArray.push(item);
+      }
+    });
+    setFirstArray(tempFirstArray);
+    setSecondArray(tempSecondArray);
+  }, [PlansData, firstArray, secondArray]);
+
+  // console.log("🚀 ~ Cards ~ tempFirstArray:", tempFirstArray)
+
+  const toggleTab = (tab) => {
+    if (activeTab !== tab) {
+      setActiveTab(tab);
+    }
+  };
+
+  const handleClick = (data) => {
+    dispatch(SetSubscriptionPlan(data));
+    localStorage.setItem('subsciptionPlan', data);
+  };
+
+  // const handleAddEntries = (plandetails) => {
+  //   navigate(`/payments?drawid=${drawid}&planid=${plandetails._id}`, { state: { ...plandetails, drawid: drawid } });
+  // };
+
+  return (
+    <div id="data">
+      <Nav tabs className="justify-content-center">
+      {PlanCategories&&PlanCategories.map((item,index)=> <>
+        <NavItem>
+         <NavLink className={activeTab === index ? 'active' : ''} onClick={() => toggleTab(index)}>
+          {item.name}
+         </NavLink>
+       </NavItem>
+       </>)}
+      </Nav>
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId="1">
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="pricing-table-bg" style={{ background: 'transparent', marginTop: '0px' }}>
+              <div className="pricing-table" style={{ padding: '0px' }}>
+                <div className="container">
+                  <div className="plan-details-flex"></div>
+                  {/* <div className="second-sec pt-5">
+                <h2 className="heading-a">MANAGE YOUR ENTRIES </h2>
+              </div> */}
+
+                  {/* Price */}
+                  <div className="pricingtablecontainer1">
+                    {firstArray?.map((eachPlan, i) => {
+                      let priceDivide = eachPlan.price / 30;
+                      return (
+                        <div
+                          // className="wow fadeInUp animated"
+                          className={i === 1 ? 'wow fadeInUp animated card-active' : 'wow fadeInUp animated'}
+                          data-wow-delay="100ms"
+                          style={{
+                            visibility: 'visible',
+                            animationDelay: '100ms',
+                            animationName: 'fadeInUp'
+                          }}
+                          key={i}
+                        >
+                          {i === 1 ? (
+                            <div className="card-pricingtable-head">
+                              <h2>Most Popular</h2>
+                            </div>
+                          ) : (
+                            ''
+                          )}
+                          <div
+                            className={i === 1 ? 'card-pricingtable' : 'pricingtable'}
+                            style={{
+                              border: '1px solid #f28500',
+                              borderTop: '6px solid #f28500'
+                            }}
+                          >
+                            <div className="main-head">
+                              <h2>{eachPlan.name}</h2>
+                            </div>
+                            <ul className="popular">
+                              <li
+                                className="pricingtable__highlight js-montlypricing"
+                                style={{
+                                  display: 'flex',
+                                  justifyContent: 'center'
+                                }}
+                              >
+                                ${eachPlan.price}
+                                <span>/{eachPlan.intervalType}</span>
+                                {/* &nbsp;{" "} */}
+                                {/* <span>(${priceDivide.toFixed(2)}/day)</span> */}
+                              </li>
+                              <div
+                                className="section-title mb-2"
+                                style={{
+                                  borderBottom: '0.5px solid #80808045'
+                                }}
+                              >
+                                <h6 className="section-plan__tagline">
+                                  <b>
+                                    <span>(${priceDivide.toFixed(2)}/day)</span>
+                                  </b>
+                                </h6>
+                                <h6 className="section-plan__tagline">
+                                  Entries:&nbsp;{eachPlan?.entries} <br />
+                                  Interval Count:&nbsp;{eachPlan?.intervalCount} ({eachPlan?.intervalType})
+                                </h6>
+                              </div>
+                            </ul>
+                            <div className="price-feature">
+                              <ul
+                                style={{
+                                  height: '300px',
+                                  overflowY: 'scroll',
+                                  scrollbarWidth: 'none',
+                                  scrollbarColor: 'orange transparent'
+                                }}
+                              >
+                                <li
+                                  style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'flex-start'
+                                  }}
+                                >
+                                  {parse(eachPlan.discription)}
+                                  {/* <ReactReadMoreReadLess
+                              charLimit={400}
+                              readMoreText={"Read more ▼"}
+                              readLessText={"Read less ▲"}
+                            >
+                              {eachPlan.discription}
+                            </ReactReadMoreReadLess> */}
+                                </li>
+                              </ul>
+
+                              <Link to="/signup" className="e-btn e-btn-2" onClick={() => handleClick(eachPlan)}>
+                                {!isAuthenticated && 'Sign Me Up'}
+                                {isAuthenticated && !isSubcription && 'Purchase'}
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </TabPane>
+        <TabPane tabId="2">
+          <Row>
+            {loading ? (
+              <Loader />
+            ) : (
+              <div className="pricing-table-bg" style={{ background: 'transparent', marginTop: '0px' }}>
+                <div className="pricing-table" style={{ padding: '0px' }}>
+                  <div className="container">
+                    <div className="plan-details-flex"></div>
+                          {/* <div className="second-sec pt-5">
+                      <h2 className="heading-a">MANAGE YOUR ENTRIES </h2>
+                    </div> */}
+
+                    {/* Price */}
+                    <div className="pricingtablecontainer1">
+                      {secondArray?.map((eachPlan, i) => {
+                      
+                        let priceDivide = eachPlan.price / 30;
+                        return (
+                          <div
+                            // className="wow fadeInUp animated"
+                            className={i === 0 ? 'wow fadeInUp animated card-active' : 'wow fadeInUp animated'}
+                            data-wow-delay="100ms"
+                            style={{
+                              visibility: 'visible',
+                              animationDelay: '100ms',
+                              animationName: 'fadeInUp'
+                            }}
+                            key={i}
+                          >
+                            {i === 0 ? (
+                              <div className="card-pricingtable-head">
+                                <h2>Most Popular</h2>
+                              </div>
+                            ) : (
+                              ''
+                            )}
+                            <div className={i === 0 ? 'card-pricingtable' : 'pricingtable'}>
+                              <div className="main-head">
+                                <h2>{eachPlan.name}</h2>
+                              </div>
+                              <ul className="popular">
+                                <li
+                                  className="pricingtable__highlight js-montlypricing"
+                                  style={{
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                  }}
+                                >
+                                  ${eachPlan.price}
+                                  <span>/{eachPlan.intervalType}</span>
+                                  {/* &nbsp;{" "} */}
+                                  {/* <span>(${priceDivide.toFixed(2)}/day)</span> */}
+                                </li>
+                                <div
+                                  className="section-title mb-2"
+                                  style={{
+                                    borderBottom: '0.5px solid #80808045'
+                                  }}
+                                >
+                                  <h6 className="section-plan__tagline">
+                                    <b>
+                                      <span>(${priceDivide.toFixed(2)}/day)</span>
+                                    </b>
+                                  </h6>
+                                  <h6 className="section-plan__tagline">
+                                    Entries:&nbsp;{eachPlan?.entries} <br />
+                                    Interval Count:&nbsp;
+                                    {eachPlan?.intervalCount} ({eachPlan?.intervalType})
+                                  </h6>
+                                </div>
+                              </ul>
+                              <div className="price-feature">
+                                <ul
+                                  style={{
+                                    height: '300px',
+                                    overflowY: 'scroll',
+                                    scrollbarWidth: 'none',
+                                    scrollbarColor: 'orange transparent'
+                                  }}
+                                >
+                                  <li
+                                    style={{
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      alignItems: 'flex-start'
+                                    }}
+                                  >
+                                    {parse(eachPlan.discription)}
+                                    {/* <ReactReadMoreReadLess
+                              charLimit={400}
+                              readMoreText={"Read more ▼"}
+                              readLessText={"Read less ▲"}
+                            >
+                              {eachPlan.discription}
+                            </ReactReadMoreReadLess> */}
+                                  </li>
+                                </ul>
+                                <Link to="/signup" className="e-btn e-btn-2" onClick={() => handleClick(eachPlan)}>
+                                  {!isAuthenticated && 'Sign Me Up'}
+                                  {isAuthenticated && !isSubcription && 'Purchase'}
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </Row>
+        </TabPane>{' '}
+        <TabPane tabId="3">
+          <Row>
+            {PlansLevelLoading ? (
+              <Loader />
+            ) : (
+              <div className="pricing-table-bg" style={{ background: 'transparent', marginTop: '0px' }}>
+                <div className="pricing-table" style={{ padding: '0px' }}>
+                  <div className="container">
+                    <div className="plan-details-flex"></div>
+                    {/* <div className="second-sec pt-5">
+                <h2 className="heading-a">MANAGE YOUR ENTRIES </h2>
+              </div> */}
+
+                    {/* Price */}
+                    <div className="pricingtablecontainer">
+                      {PlansLevelData?.map((eachPlan, i) => (
+                        <div
+                          className={i === 2 ? 'wow fadeInUp animated card-active' : 'wow fadeInUp animated'}
+                          data-wow-delay="100ms"
+                          style={{
+                            visibility: 'visible',
+                            animationDelay: '100ms',
+                            animationName: 'fadeInUp'
+                          }}
+                          key={i}
+                        >
+                          {i === 2 ? (
+                            <div className="card-pricingtable-head">
+                              <h2>Most Popular</h2>
+                            </div>
+                          ) : (
+                            ''
+                          )}
+                          <div className={i === 2 ? 'card-pricingtable' : 'pricingtable'}>
+                            <div className="main-head">
+                              <h2>{eachPlan.name}</h2>
+                            </div>
+                            <ul className={i === 2 ? 'populars' : 'popular'}>
+                              <li className="pricingtable__highlight js-montlypricing" style={{ display: 'flex' }}>
+                                ${eachPlan.price}
+                              </li>
+                              <li
+                                style={{
+                                  fontSize: '18px',
+                                  fontWeight: 'bold'
+                                }}
+                              >
+                                Interval Type:
+                                <span style={{ paddingLeft: '10px' }}>
+                                  {eachPlan.intervalType[0].toUpperCase() + eachPlan.intervalType.slice(1, eachPlan.intervalType.length)}
+                                </span>
+                              </li>
+                              <li
+                                style={{
+                                  fontSize: '18px',
+                                  fontWeight: 'bold'
+                                }}
+                              >
+                                Entries:
+                                <span style={{ paddingLeft: '10px' }}>{eachPlan.entries}</span>
+                              </li>
+                            </ul>
+                            <div className="price-feature">
+                              {/* <ul
+                          style={{
+                            height: "300px",
+                            overflowY: "scroll",
+                            scrollbarWidth: "none",
+                            scrollbarColor: "orange transparent",
+                          }}
+                        >
+                          <li>{parse(eachPlan.discription)}</li>
+                        </ul> */}
+                              <div className="price-feature">
+                                <ul
+                                  style={{
+                                    height: '300px',
+                                    overflowY: 'scroll',
+                                    scrollbarWidth: 'none',
+                                    scrollbarColor: 'orange transparent'
+                                  }}
+                                >
+                                  <li>{parse(eachPlan.discription)}</li>
+                                </ul>
+                                {/* <button
+                                  style={{ width: "100%", border: "none" }}
+                                  onClick={() => handleAddEntries(eachPlan)}
+                                  className="e-btn e-btn-2"
+                                >
+                                  Get Enteries
+                                </button> */}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </Row>
+        </TabPane>
+      </TabContent>
+    </div>
+  );
+};
+
+export default Cards;

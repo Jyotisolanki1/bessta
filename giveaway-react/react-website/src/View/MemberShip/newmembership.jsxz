@@ -1,0 +1,231 @@
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { GetPlansApi } from '../../Slices/PlanSlice';
+import { GetProfileApi } from '../../Slices/LoginSlice';
+import { GetPlanCategoriesApi } from '../../Slices/PlanCategorySlice';
+import Loader from '../../Common/Loader';
+import parse from 'html-react-parser';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Skeleton from 'react-loading-skeleton';
+
+const MemberShip = () => {
+  const Plans = useSelector((state) => state.planAction);
+  const { isAuthenticated, isSubcription } = useSelector((state) => state.loginAction);
+  const Profile = useSelector((state) => state.loginAction);
+  const Categories = useSelector((state) => state.planCategoryAction);
+  const [action, setAction] = useState(false);
+  const { userToken } = useSelector((state) => state.loginAction);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [activePlan, setActivePlan] = useState(0);
+  const [activeCategory, setActiveCategory] = useState('');
+  const [planFound, setPlanFound] = useState(false);
+  const [processingCount, setProcessingCount] = useState(0);
+
+  const handleUpdateCancelSubScribe = async (path, planData, activePlanId) => {
+    if (processingCount > 0) return;
+    setProcessingCount(processingCount + 1);
+    if (activePlanId === planData?._id) {
+      const result = window.confirm('Are you sure you want to cancel the membership? ');
+      const button = document.getElementById(`${planData?._id}-button`);
+      if (result) {
+        if (button) {
+          button.innerText = 'Processing...';
+          button.disabled = true;
+        }
+        const res = await dispatch(CancelSubscriptionApi(userToken));
+        if (res.success) {
+          await dispatch(GetProfileApi(userToken));
+          setAction((prevState) => !prevState);
+          toast.success('Subscription Cancelled Successfully');
+        } else {
+          setAction((prevState) => !prevState);
+        }
+      }
+    } else {
+      const result = window.confirm(`Are you sure you want to upgrade the membership?\nSubscription cost will be change accordingly.`);
+      const button = document.getElementById(`${planData._id}-button`);
+      if (result) {
+        if (button) {
+          button.innerText = 'Processing...';
+          button.disabled = true;
+        }
+        const res = await dispatch(UpdateSubscriptionApi({ plan_id: planData._id }, userToken));
+        if (res.success) {
+          await dispatch(GetProfileApi(userToken));
+          setAction((prevState) => !prevState);
+          toast.success(res?.message);
+        } else {
+          setAction((prevState) => !prevState);
+        }
+      }
+    }
+    setProcessingCount(processingCount - 1);
+  };
+
+  const handleSubScribe = (path, planData) => {
+    navigate(path, { state: planData });
+  };
+
+  useEffect(() => {
+    if (Plans?.PlansData) {
+      const anyVideosFound = Plans?.PlansData.some(
+        (eachCourse) =>
+          eachCourse?.category._id?.includes(activeCategory) && (eachCourse?.status === 'active' || eachCourse?.status === 'enabled')
+      );
+      setPlanFound(anyVideosFound);
+    }
+  }, [Plans, activeCategory]);
+
+  const activeData = Categories?.PlanCategories.filter((item) => item?.status === 'active' || item?.status === 'enabled');
+
+  const GetPlansAndCategories = async () => {
+    await dispatch(GetProfileApi(userToken));
+    await dispatch(GetPlansApi('plans?type=fixed'));
+    const response = await dispatch(GetPlanCategoriesApi());
+    if (response.success) {
+      const activeCatData = response?.data?.filter((item) => item.status === 'active' || item.status === 'enabled');
+      setActiveCategory(activeCatData[0]._id);
+    }
+  };
+
+  useEffect(() => {
+    GetPlansAndCategories();
+  }, []);
+
+  const handleACtivePlan = (index, id) => {
+    setActivePlan(index);
+    setActiveCategory(id);
+  };
+
+  return (
+    <div>
+      {Categories.loading || Plans.loading || Profile.loading ? (
+        <Loader />
+      ) : (
+        <div className="container" style={{marginTop:"8%"}}>
+          {activeData.map((each, index) => {
+            const plans = Plans.PlansData.filter((plan) => plan.category._id === each._id);
+            return (
+              <div key={index} className="category-section">
+                <h2 style={{textAlign:"center"}}>{each.name}</h2>
+                <div className="pricingtablecontainer2">
+                  {plans.map((eachPlan, i) => {
+                    let priceDivide = eachPlan.price / 30;
+                    return (
+                      <div
+                        className="wow fadeInUp animated"
+                        data-wow-delay="100ms"
+                        style={{
+                          visibility: 'visible',
+                          animationDelay: '100ms',
+                          animationName: 'fadeInUp',
+                          background: '#ffff',
+                          borderRadius: '2%'
+                        }}
+                        key={i}
+                      >
+                        <div className="pricingtable">
+                          <div className="main-head">
+                            <h2>{eachPlan.name}</h2>
+                          </div>
+                          <ul className="popular">
+                            <li
+                              className="pricingtable__highlight js-montlypricing"
+                              style={{
+                                display: 'flex',
+                                justifyContent: 'center'
+                              }}
+                            >
+                              ${eachPlan.price}
+                              <span>/{eachPlan.intervalType}</span>
+                            </li>
+                            <div
+                              className="section-title mb-2"
+                              style={{
+                                borderBottom: '0.5px solid #80808045'
+                              }}
+                            >
+                              <h6 className="section-plan__tagline">
+                                <b>
+                                  <span>(${priceDivide.toFixed(2)}/day)</span>
+                                </b>
+                              </h6>
+                              <h6 className="section-plan__tagline">
+                                Entries:&nbsp;{eachPlan?.entries} <br />
+                                Interval Count:&nbsp;{eachPlan?.intervalCount} ({eachPlan?.intervalType})
+                              </h6>
+                            </div>
+                          </ul>
+                          <div className="price-feature">
+                            <ul
+                              style={{
+                                height: '300px',
+                                overflowY: 'scroll',
+                                scrollbarWidth: 'none',
+                                scrollbarColor: 'orange transparent'
+                              }}
+                            >
+                              <li>{parse(eachPlan.discription)}</li>
+                            </ul>
+                            <div
+                              style={{
+                                width: '100%',
+                                display: 'flex',
+                                justifyContent: 'center'
+                              }}
+                            >
+                              {isSubcription ? (
+                                <button
+                                  id={`${eachPlan._id}-button`}
+                                  style={{
+                                    width: '80%',
+                                    border: 'none',
+                                    backgroundColor: Profile.ProfileData?.subcription?.plan_id?._id === eachPlan._id && 'green!important'
+                                  }}
+                                  onClick={(e) =>
+                                    handleUpdateCancelSubScribe(
+                                      `/payments?planid=${eachPlan._id}`,
+                                      eachPlan,
+                                      Profile.ProfileData?.subcription?.plan_id?._id
+                                    )
+                                  }
+                                  className={
+                                    Profile.ProfileData?.subcription?.plan_id?._id === eachPlan._id
+                                      ? 'e-btn-active e-btn-2'
+                                      : 'e-btn e-btn-2'
+                                  }
+                                  // disabled={
+                                  //   Profile.ProfileData?.subcription?.plan_id?._id ===
+                                  //   eachPlan._id
+                                  // }
+                                >
+                                  {Profile.ProfileData?.subcription?.plan_id?._id === eachPlan._id ? 'Cancel' : 'Upgrade'}
+                                </button>
+                              ) : (
+                                <button
+                                  style={{ width: '80%', border: 'none' }}
+                                  onClick={() => handleSubScribe(`/payments?planid=${eachPlan._id}`, eachPlan)}
+                                  className="e-btn e-btn-2"
+                                >
+                                  Purchase
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MemberShip;

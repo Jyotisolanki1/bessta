@@ -1,0 +1,629 @@
+/* 
+
+@media (min-width: 480px) and (max-width: 650px) {
+    .content-title{
+      margin-left: 8px !important;
+     }
+  
+  
+     .bg-video-wrap{
+      height: 100vh !important;
+     }
+    .text {
+      padding: 10px !important; /* Reduced padding for mobile */
+line-height: 24px !important;
+/* Tighter line spacing for mobile */
+font-size: 10px !important;
+/* Smaller font size for mobile */
+/* Adding a small margin to avoid text sticking to edges */
+margin-left: 0px !important;
+padding: 0;
+box-sizing: border-box;
+width: 100vw !important;
+}
+
+.fact-two {
+  padding: 1px;
+  margin-top: -69%;
+}
+
+.aboutPtag {
+  font-size: 1rem !important;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #333;
+}
+
+.overlay {
+  width: 100% !important;
+  height: 38% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background: #161617; */
+  background-size: 3px 3px;
+  z-index: 2;
+}
+
+.content-container {
+  margin-left: 0px !important;
+  /* line-height: 2%!important; */
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 24px !important;
+}
+
+.newdesign {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.newFont {
+  font-size: 17px !important;
+}
+
+.member-grid {
+  display: grid !important;
+  grid-template-columns: repeat(1, 1fr) !important;
+}
+
+.container-small {
+  width: 500px !important;
+  margin: 0 auto;
+}
+
+.video-one__content__title {
+  font-size: 20px !important;
+}
+
+.mouse-wheel {
+  /* height: 600vh; */
+  position: relative !important;
+}
+
+h5.section-title__tagline {
+  text-align: center !important;
+  margin-left: -162px !important;
+}
+
+h2.section-title__title {
+  text-align: center !important;
+  margin-left: -172px !important;
+}
+
+.video-one__banner {
+  border: 3px solid #f28500;
+  height: 360px !important;
+  top: 0px !important;
+}
+
+.swiper-slide .title {
+  font-size: 23px !important;
+}
+
+h6.section-plan__tagline {
+  margin-left: 70px !important;
+}
+
+.pricing-table .container .mb-5 {
+  margin-bottom: -3rem !important;
+}
+
+
+.pricing-table .container h5.section-title__tagline {
+  text-align: center !important;
+  margin-left: 99px !important;
+}
+
+.pricing-table .container h2.section-title__title {
+  text-align: center !important;
+  margin-left: 87px !important;
+}
+
+.member-flex {
+  display: flex;
+  flex-direction: column !important;
+  /* justify-content: left; */
+  gap: 0px !important;
+  align-items: start;
+  text-align: right;
+  margin-bottom: 30px;
+}
+
+.Investorsclub {
+  margin: -21px -25% 0% 5% !important;
+}
+
+h2.section-title__title {
+  text-align: center !important;
+  margin-left: -15px !important;
+}
+
+.lastimgofswiper img {
+  margin-top: -40px !important;
+}
+
+.main-footer__navmenu {
+  position: relative;
+  color: white;
+}
+
+.textcenter {
+  text-align: center;
+}
+
+i.fa-solid.fa-users::before {
+  text-align: center;
+}
+
+i.fa-solid.fa-users:after {
+  text-align: center;
+}
+
+.pricingtablecontainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr) !important;
+  gap: 12px;
+  padding-top: 20px;
+}
+
+.main-footer__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  mix-blend-mode: luminosity;
+  opacity: .06;
+}
+
+.main-footer__top {
+  /* position: relative;
+     display: flex;
+     align-items: center;
+     justify-content: space-between; */
+  border-bottom: 1px solid #767676;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+
+.newnavbarmenu {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px;
+  margin: 10px;
+  height: 100vh !important;
+}
+
+.marginfaqsection {
+  margin: 1% !important;
+}
+
+.faq-section {
+  margin: 23px !important;
+}
+
+.starimg {
+  height: 30;
+  width: 30;
+}
+
+.toggle-arrow {
+  height: 20PX !important;
+  width: 20PX !important;
+}
+
+.signupform {
+  width: 80% !important
+}
+
+.signupformwp {
+  width: 70% !important;
+  /* margin-left: -50px !important; */
+}
+
+.paymentcard {
+  width: 80% !important;
+  margin: 20px !important;
+}
+
+.signupbuttonbysagar {
+  width: 80% !important;
+  margin: 10px !important;
+}
+
+.signupformpassword {
+  display: flex !important;
+  position: relative !important;
+  border: none !important;
+  /* margin: 10px !important; */
+  /* right: 20px !important; */
+
+}
+
+.resposndiveh4 {
+  font-size: 16px;
+}
+
+.responsivesignup {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+
+
+ul.tabs {
+  /* margin: 20px !important; */
+  margin-left: -99px !important;
+  padding: 77px !important;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.second-sec {
+  padding-top: 9px;
+}
+
+li.tab-link {
+  margin-left: 0px !important;
+  padding-right: 0px !important;
+
+}
+
+h4.sub-heading {
+  color: #000;
+  text-align: left !important;
+  margin-left: 55px !important;
+  font-size: 16px !important;
+  line-height: 12px !important;
+  font-weight: 700;
+  margin-top: 16px;
+}
+
+.section-title {
+  margin-left: -106px !important;
+}
+
+h2.heading-a {
+  font-size: 24px;
+  text-align: left !important;
+  margin-left: 64px !important;
+}
+
+
+ul.tabs li {
+  background: none;
+  color: #222;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+  width: 80%;
+  text-align: center;
+}
+
+h2.heading-a {
+  font-size: 24px;
+  text-align: center;
+}
+
+.second-sec {
+  padding-top: 9px !important;
+}
+
+/* .form-container {
+     position: absolute;
+     top: 0;
+     height: 80% !important;
+     transition: all 0.6s ease-in-out;
+   } */
+
+.griddata {
+  display: grid !important;
+  grid-template-columns: repeat(1, 1fr) !important;
+  margin: 0px !important;
+}
+
+.faq-title {
+  font-size: 12px !important;
+}
+
+.skeleton {
+  margin: 90px;
+}
+
+.login-container {
+  padding: 0 !important;
+}
+
+.our-logos img {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 329px !important;
+  height: auto !important;
+  /* margin: 10px !important; */
+  margin-bottom: 0PX !important;
+  object-fit: contain;
+  /* mix-blend-mode: color-burn !important; */
+}
+
+
+
+.partner-container {
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto;
+  /* padding-bottom: 90px; */
+  background-color: var(--nisoz-white);
+  /* background-image: url(../images/backgrounds/partnerimage.jpg); */
+  /* height: 400px; */
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.price-feature li {
+  list-style-type: none;
+  color: #0e1133;
+  font-size: 23px;
+  font-weight: 500;
+  border: none;
+  margin-top: 5px;
+}
+
+.faq-item {
+  display: flex;
+  width: 100%;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  /* background-color: #717175; */
+
+}
+
+.main-footer__social a {
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  background-color: var(--nisoz-black5);
+  color: var(--nisoz-white);
+  line-height: 75px;
+  border-radius: 50%;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 7px;
+}
+
+.buttonFAQ {
+  margin: 7% !important;
+  width: 80% !important;
+}
+
+
+.newcontainer {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+/* 
+   .portfolio-two{
+     display: flex;
+   } */
+
+.buttonofcards {
+  margin-Left: 20% !important;
+  width: 240px;
+  /* Example width, aap apni requirement ke hisaab se change kar sakte hain */
+  text-align: center;
+}
+
+.planspage {
+  margin-top: 14% !important;
+}
+
+.pricingtablecontainer1 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 25px;
+  padding-top: 20px;
+  align-items: end;
+  justify-content: space-around
+}
+
+
+.pricingtablecontainer2 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 25px;
+  padding-top: 20px;
+  align-items: end;
+  justify-content: space-around;
+}
+
+
+
+.member-flex {
+  display: flex;
+  justify-content: flex-start !important;
+  align-items: start;
+  margin-bottom: 30px;
+  gap: 0px !important;
+}
+
+.member-flex-1 {
+  width: 62% !important;
+}
+
+.imgoi {
+  margin-left: 247px !important;
+  margin-top: -153px;
+}
+
+.imgoi3 {
+  margin-left: 217px !important;
+  margin-top: -173px;
+}
+
+.execlusive {
+  margin-top: -22px;
+}
+
+.imgoi2 {
+  margin-left: 237px !important;
+  margin-top: 193px !important;
+}
+
+.imgoi4 {
+  margin-left: 237px !important;
+  margin-top: 122px !important;
+}
+
+.member-flex:nth-child(even) {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+.custom-section {
+  background-color: rgba(72, 71, 77, 0.8);
+  /* Adjusted for transparency */
+  padding-left: 0;
+  /* Reset padding-left for better centering */
+  width: 100vw;
+  /* Ensure full width */
+  box-sizing: border-box;
+  /* Include padding and borders in width calculation */
+}
+
+.custom-container {
+  width: 100vw;
+  /* Full width container */
+  padding: 0 15px;
+  /* Padding to ensure content fits well */
+  box-sizing: border-box;
+  /* Include padding in width */
+}
+
+.section-title__feature {
+  margin-top: 2px;
+  /* Margin adjustment */
+  text-align: center;
+  /* Center align title */
+}
+
+.custom-images {
+  display: flex;
+  /* Flex container */
+  flex-wrap: wrap;
+  /* Wrap content */
+  justify-content: center;
+  /* Center images horizontally */
+  align-items: center;
+  /* Center images vertically */
+  padding: 0;
+  /* Remove extra padding */
+}
+
+.custom-img-col {
+  flex: 0 0 auto;
+  /* Prevent columns from stretching */
+  margin-bottom: 20px;
+  /* Margin below images */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px 1% !important;
+}
+
+.image {
+  flex-basis: 24%;
+  width: 80%;
+
+
+  height: 41rem;
+}
+
+.image img {
+  width: 97% !important;
+  height: auto !important;
+  /* margin-left: 10% !important; */
+}
+
+.custom-img-col img {
+  max-width: 100%;
+  /* Ensure images fit within columns */
+  height: auto;
+  /* Maintain aspect ratio */
+}
+
+
+.member-grid.mouse-wheel:before {
+  content: none !important;
+  position: absolute;
+  /* width: 100%; */
+  height: 100%;
+  top: 0;
+  left: 50%;
+  border: 2px dashed white;
+}
+
+.page-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  /* min-width: 300px; */
+  overflow: hidden;
+  transition: filter 0.5s ease;
+}
+
+
+section {
+  padding-left: 1px;
+  /* Adjust padding for smaller screens */
+  width: 100vw;
+  /* Full width for the section */
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* Allow wrapping of columns */
+  justify-content: center;
+  /* Center align columns */
+}
+
+.textcenterkrnahai {
+  text-align: center !important;
+}
+
+.col-lg-3,
+.col-md-6 {
+  flex: 0 0 auto;
+  /* Prevent columns from stretching */
+  margin-bottom: 20px;
+  text-align: center;
+  /* Center align content within columns */
+}
+
+.col-lg-3 img,
+.col-md-6 img {
+  max-width: 100%;
+  /* Ensure images fit within columns */
+  height: auto;
+  /* Maintain aspect ratio */
+}
+
+.section-title__feature {
+  text-align: center;
+  /* Center align the section title */
+  margin-top: 2px;
+  /* Ensure consistent margin */
+}

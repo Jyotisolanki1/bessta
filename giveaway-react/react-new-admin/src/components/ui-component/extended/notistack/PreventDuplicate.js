@@ -1,0 +1,45 @@
+'use client';
+
+import React from 'react';
+
+// material-ui
+import { Button, Stack, Checkbox } from '@mui/material';
+
+// third-party
+import { enqueueSnackbar } from 'notistack';
+
+// project import
+import SubCard from 'components/ui-component/cards/SubCard';
+
+// ==============================|| NOTISTACK - PREVENT DUPLICATE ||============================== //
+
+export default function PreventDuplicate() {
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChangeCheck = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  return (
+    <SubCard title="Prevent Duplicate">
+      <Stack flexDirection="row" gap={1} justifyContent="center" alignItems="center" flexWrap="wrap">
+        <Checkbox checked={checked} onChange={handleChangeCheck} inputProps={{ 'aria-label': 'controlled' }} />
+        Prevent duplicate
+        <Button
+          variant="outlined"
+          fullWidth
+          sx={{ marginBlockStart: 2 }}
+          onClick={() =>
+            enqueueSnackbar('You only see me once.', {
+              // eslint-disable-next-line
+              preventDuplicate: checked ? true : false,
+              variant: 'info'
+            })
+          }
+        >
+          Show snackbar
+        </Button>
+      </Stack>
+    </SubCard>
+  );
+}

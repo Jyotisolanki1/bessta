@@ -1,0 +1,241 @@
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* td {
+    padding: 5px !important;
+    font-size: 0.750rem !important;
+}
+.dense-table-custom {
+    padding: 5px !important;
+    font-size: 0.750rem !important;
+} */
+.custom-icon-button {
+    width: 18px; /* Custom width */
+    height: 18px; /* Custom height */
+    margin: 0px 5px 0px 5px;
+  }
+/* button:focus {
+    outline: none;
+} */
+
+.fc-event.fc-event-draggable, .fc-event[href] {
+    cursor: default;
+    background-color: #fff !important;
+    border-color: #fff !important;
+}
+
+.faq-answer img {
+  max-width: 100%; /* Adjust according to your layout */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+/*Spinner classes*/
+@keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  .spin-animation {
+    animation: spin 4s linear infinite; /* Adjust the duration to make it spin slower or faster */
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(180deg); /* Spin slowly for the first part */
+    }
+    30% {
+      transform: rotate(1000deg); /* Spin quickly for the middle part */
+    }
+    40% {
+      transform: rotate(1800deg); /* Spin slowly for the last part */
+    }
+    80% {
+      transform: rotate(2160deg); /* Complete rotation */
+    }
+    100% {
+      transform: rotate(3100deg); /* Complete rotation */
+    }
+  }
+  
+  .animated-text-user1 {
+    animation: moveUp 0.1s ease forwards;
+   
+  }
+  
+  @keyframes moveUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .main{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .custom-button-start {
+    border: 10px solid rgb(241 186 21);
+    width: 33%;
+    height: 16%;
+    position: absolute;
+    top: 40%;
+    right: 50%;
+    left: 35%;
+    background-image: linear-gradient(to bottom right, #f6e05e, #d97706);
+    border-radius: 5%;
+    border-top-left-radius: 1.5rem; /* Adjust the value as needed */
+    border-top-right-radius: 1rem; /* Adjust the value as needed */
+    border-bottom-left-radius: 1.5rem; /* Adjust the value as needed */
+    border-bottom-right-radius: 0;
+    cursor: pointer;
+  }
+  .custom-button-start:hover {
+    /* background-image: linear-gradient(to bottom right, #f6e05e, #d97706); */
+    background: linear-gradient(300deg,rgb(139, 116, 10),rgb(214, 201, 78),rgb(117, 88, 8));
+  }
+  .custom-button {
+    border: 10px solid rgb(241 186 21);
+    width: 34%;
+    height: 16%;
+    position: absolute;
+    top: 34%;
+    left: 28%;
+    background-image: linear-gradient(to bottom right, #f6e05e, #d97706);
+    border-radius: 5%;
+    border-top-left-radius: 1.5rem; /* Adjust the value as needed */
+    border-top-right-radius: 1rem; /* Adjust the value as needed */
+    border-bottom-left-radius: 1.5rem; /* Adjust the value as needed */
+    border-bottom-right-radius: 0;
+  }
+  
+  .custom-button:hover {
+    /* background-image: linear-gradient(to bottom right, #f6e05e, #d97706); */
+    background: linear-gradient(300deg,rgb(139, 116, 10),rgb(214, 201, 78),rgb(117, 88, 8));
+  }
+  
+  .custom-button:focus {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.5);
+  }
+  
+  .custom-button.dark:focus {
+    box-shadow: 0 0 0 4px rgba(34, 34, 34, 0.5);
+  }
+
+  .custom-text {
+    border: 10px solid rgb(241 186 21);
+    width: 33%;
+    height: 16%;
+    position: absolute;
+    top: 40%;
+    right: 50%;
+    left: 35%;
+    background-image: linear-gradient(to bottom right, #f6e05e, #d97706);
+    border-radius: 5%;
+    border-top-left-radius: 1.5rem; /* Adjust the value as needed */
+    border-top-right-radius: 1rem; /* Adjust the value as needed */
+    border-bottom-left-radius: 1.5rem; /* Adjust the value as needed */
+    border-bottom-right-radius: 0;
+  }
+
+  .custom-text-p{
+    color: white;
+    text-align: center;
+  }
+
+  .userDiv{
+    color: white;
+    font-size: 2.4em;
+    text-align: center;
+  }
+
+  /* .background_color {
+    background: linear-gradient(300deg,rgb(139, 116, 10),rgb(214, 201, 78),rgb(117, 88, 8));
+    background-size: 180% 180%;
+    animation: gradient-animation 7s ease infinite;
+  } */
+  .background_color {
+    background: linear-gradient(300deg,rgb(250, 197, 105),rgb(250, 197, 105),rgb(250, 197, 105));
+    background-size: 180% 180%;
+    animation: gradient-animation 7s ease infinite;
+  }
+.main{
+  margin-top: 28%;
+}
+  
+/*Spinner classes*/
+.fullwidthdate {
+  width: -webkit-fill-available;
+}
+/* cong */
+.container{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.girl{
+  position: absolute;
+  top: 30%;
+}
+.right{/* Set the height to the height of the viewport */
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Arrange items in a column */
+  justify-content: center; /* Center items vertically */
+  margin-left: 4px;
+  color: rgb(113 63 18 );
+}
+.winnerRank{
+  font-size: 1.5rem; 
+  font-weight: bold;
+  margin: 0;
+}
+.Email_prize{
+  font-weight: bold;
+  font-size: 1em;
+}
+.winnerList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.remainingWinnner{
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-left: 13%;
+
+}
+.countnumber{
+  width: 34%;
+  height: 16%;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  left: 45%;
+  font-size: 250px;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+
+}

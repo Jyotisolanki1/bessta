@@ -1,0 +1,185 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable arrow-body-style */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable lines-around-directive */
+/* eslint-disable import/no-unresolved */
+'use client';
+
+import React from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
+  Grid,
+  Typography,
+  IconButton,
+  Divider,
+  TableRow,
+  TableBody,
+  TableContainer,
+  Table,
+  TableCell,
+  TableHead,
+  TableSortLabel,
+  Box,
+  Select,
+  Pagination,
+  MenuItem
+} from '@mui/material';
+import { gridSpacing } from 'store/constant';
+import CloseIcon from '@mui/icons-material/Close';
+import { planDetailRequest } from 'store/slices/plans';
+import { useDispatch, useSelector } from 'store';
+import moment from 'moment';
+import { useTheme } from '@mui/material/styles';
+import Skeleten from '../../../../utils/skeleten';
+import Link from 'next/link';
+
+const Transition = React.forwardRef((props, ref) => <Slide direction="down" ref={ref} {...props} />);
+
+const Company = ({ open, close, item }) => {
+  const theme = useTheme();
+  const [orderBy, setOrderBy] = React.useState('');
+  const [page, setPage] = React.useState(1);
+  const [limit, setLimit] = React.useState(10);
+  const [order, setOrder] = React.useState('asc');
+  const { planloading, planDetail, totalPages } = useSelector((state) => state.plans);
+
+  // const Avatar1 = `${imgPath}${item?.profile_pic}`;
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    // eslint-disable-next-line no-underscore-dangle
+    dispatch(planDetailRequest(JSON.parse(localStorage.getItem('planid')), page, limit));
+  }, [page, limit]);
+
+  const handleRequestSort = (property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
+  const sortedSubscription = React.useMemo(() => {
+    if (!orderBy) return planDetail || [];
+
+    return [...planDetail].sort((a, b) => {
+      const valueA = a?.plan_id?.[orderBy] || '';
+      const valueB = b?.plan_id?.[orderBy] || '';
+
+      if (typeof valueA === 'number' && typeof valueB === 'number') {
+        return order === 'asc' ? valueA - valueB : valueB - valueA;
+        // eslint-disable-next-line no-else-return
+      } else {
+        return order === 'asc'
+          ? String(valueA).localeCompare(String(valueB), undefined, { numeric: true })
+          : String(valueB).localeCompare(String(valueA), undefined, { numeric: true });
+      }
+    });
+  }, [planDetail, orderBy, order]);
+  return (
+    <>
+      <DialogTitle>
+        <Grid container spacing={0}>
+          <Grid item xs={6}>
+            Plan Details
+          </Grid>
+          <Grid item xs={6}>
+            <IconButton color="inherit" onClick={close} aria-label="close" sx={{ position: 'absolute', right: 8, top: 8 }}>
+              <CloseIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </DialogTitle>
+      <Grid container>
+        <Grid item xs={12}>
+          <Grid container>
+            <Grid item xs={12}>
+              <TableContainer>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>#</TableCell>
+                      <TableCell sx={{ cursor: 'pointer' }}>Username</TableCell>
+                      <TableCell sx={{ cursor: 'pointer' }}>Email</TableCell>
+                      <TableCell sx={{ cursor: 'pointer' }}>Plan Name</TableCell>
+                      <TableCell sx={{ cursor: 'pointer' }}>Interval Type</TableCell>
+                      <TableCell sx={{ cursor: 'pointer' }}>Interval Count</TableCell>
+                      <TableCell sx={{ cursor: 'pointer' }}>Entries</TableCell>
+                      <TableCell sx={{ cursor: 'pointer' }}>Price</TableCell>
+                      <TableCell>Status</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {planloading ? (
+                      <Skeleten count={9} />
+                    ) : !sortedSubscription || sortedSubscription.length === 0 ? (
+                      <TableRow hover>
+                        <TableCell colSpan={9} align="center">
+                          No Details Found
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      sortedSubscription.map((row, index) => (
+                        <TableRow hover key={index}>
+                          <TableCell>{index + 1}</TableCell>
+                          <TableCell>{row?.uid?.firstname}</TableCell>
+                          <TableCell>{row?.uid?.email}</TableCell>
+                          <TableCell>{row?.plan_id?.name}</TableCell>
+                          <TableCell>{row.plan_id.intervalType.charAt(0).toUpperCase() + row.plan_id.intervalType.slice(1)}</TableCell>
+                          <TableCell>{row?.plan_id?.intervalCount}</TableCell>
+                          <TableCell>{row?.entries}</TableCell>
+                          <TableCell>${row?.amount}</TableCell>
+                          <TableCell>
+                            {' '}
+                            {row?.status === 'active'
+                              ? 'Active'
+                              : row?.status === 'update'
+                              ? 'Updated'
+                              : row?.status === 'cancel'
+                              ? 'Cancelled'
+                              : ''}
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>
+            <Grid item xs={12} sx={{ p: 3 }}>
+              <Grid container justifyContent="space-between" spacing={gridSpacing}>
+                <Grid item>
+                  <Pagination count={totalPages} page={page} color="primary" onChange={handleChangePage} />
+                </Grid>
+                <Grid item>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    value={limit}
+                    onChange={(e) => {
+                      setLimit(e.target.value);
+                      setPage(1);
+                    }}
+                    id="demo-simple-select"
+                    label="Age"
+                  >
+                    <MenuItem selected value={10}>
+                      Ten
+                    </MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
+  );
+};
+
+export default Company;

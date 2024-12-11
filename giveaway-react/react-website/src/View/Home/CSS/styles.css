@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Prata&display=swap");
+
+#app {
+    height: 100%
+}
+
+.swiper-container {
+    overflow: hidden; /* Ensure content doesn't overflow its container */
+    position: relative; /* Ensure position is relative */
+  }
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+    /* background: #000; */
+}
+
+.swiper-slide {
+    font-size: 18px;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.parallax-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130%;
+    height: 100%;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+}
+
+.swiper-slide .title {
+    font-size: 45px ;
+    /* font-weight: 300 !important; */
+    font-weight: 600;
+    font-family: "Prata", serif;
+    /* font-size: xxx-large; */
+    margin-top: 150px;
+    position: relative;
+    z-index: 1;
+    /* mix-blend-mode: soft-light; */
+    /* mix-blend-mode: exclusion; */
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important; */
+    /* mix-blend-mode: overlay; */
+    color: #fff;
+    /* text-shadow: rgb(43, 191, 255) 4px 0px 0px, rgb(43, 191, 255) 3.87565px 0.989616px 0px, rgb(43, 191, 255) 3.51033px 1.9177px 0px, rgb(43, 191, 255) 2.92676px 2.72656px 0px, rgb(43, 191, 255) 2.16121px 3.36588px 0px, rgb(43, 191, 255) 1.26129px 3.79594px 0px, rgb(43, 191, 255) 0.282949px 3.98998px 0px, rgb(43, 191, 255) -0.712984px 3.93594px 0px, rgb(43, 191, 255) -1.66459px 3.63719px 0px, rgb(43, 191, 255) -2.51269px 3.11229px 0px, rgb(43, 191, 255) -3.20457px 2.39389px 0px, rgb(43, 191, 255) -3.69721px 1.52664px 0px, rgb(43, 191, 255) -3.95997px 0.56448px 0px, rgb(43, 191, 255) -3.97652px -0.432781px 0px, rgb(43, 191, 255) -3.74583px -1.40313px 0px, rgb(43, 191, 255) -3.28224px -2.28625px 0px, rgb(43, 191, 255) -2.61457px -3.02721px 0px, rgb(43, 191, 255) -1.78435px -3.57996px 0px, rgb(43, 191, 255) -0.843183px -3.91012px 0px, rgb(43, 191, 255) 0.150409px -3.99717px 0px, rgb(43, 191, 255) 1.13465px -3.8357px 0px, rgb(43, 191, 255) 2.04834px -3.43574px 0px, rgb(43, 191, 255) 2.83468px -2.82216px 0px, rgb(43, 191, 255) 3.44477px -2.03312px 0px, rgb(43, 191, 255) 3.84068px -1.11766px 0px, rgb(43, 191, 255) 3.9978px -0.132717px 0px; */
+}
+
+.swiper-slide .subtitle {
+    font-size: 24px;
+    width: 55%;
+    font-weight: 700;
+    text-align: justify;
+    line-height: 35px;
+    position: relative;
+    z-index: 1;
+    font-family: "Prata", serif;
+
+
+}
+.newFont{
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 25px; /* or 14px, depending on the size of the text */
+    font-weight: normal !important;
+    font-style: normal !important; 
+}
+.swiper-slide .text {
+    /* font-size: 20px; */
+    width: 55%;
+    /* max-width: 400px; */
+    line-height: 35px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    font-family: "Prata", serif;
+    /* background-color: #f28500 !important; */
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .swiper-slide .title {
+        font-size: 40px;
+        font-weight: 600;
+        font-family: "Prata", serif;
+        font-size: xxx-large;
+        position: relative;
+        z-index: 1;
+        color: #fff;
+    }
+  } 

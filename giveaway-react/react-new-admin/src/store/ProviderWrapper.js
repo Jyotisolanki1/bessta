@@ -1,0 +1,69 @@
+'use client';
+
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+
+// map
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+// third-party
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+
+// project-import
+import Loader from 'components/ui-component/Loader';
+import Locales from 'components/ui-component/Locales';
+import RTLLayout from 'components/ui-component/RTLLayout';
+import Snackbar from 'components/ui-component/extended/Snackbar';
+import Notistack from 'components/ui-component/third-party/Notistack';
+
+import ThemeCustomization from 'themes';
+import { getMenu } from 'store/slices/menu';
+import { persister, store, dispatch } from 'store';
+import { ConfigProvider } from 'contexts/ConfigContext';
+import NavigationScroll from 'layout/NavigationScroll';
+
+import { JWTProvider as AuthProvider } from 'contexts/JWTContext';
+// import { FirebaseProvider as AuthProvider } from '../contexts/FirebaseContext';
+// import { Auth0Provider as AuthProvider } from '../contexts/Auth0Context';
+// import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
+
+export default function ProviderWrapper({ children }) {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    dispatch(getMenu()).then(() => {
+      setLoading(true);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!loading) return <Loader />;
+
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persister}>
+        <ConfigProvider>
+          <ThemeCustomization>
+            <RTLLayout>
+              <Locales>
+                <NavigationScroll>
+                  <AuthProvider>
+                    <Notistack>
+                      <Snackbar />
+                      {children}
+                    </Notistack>
+                  </AuthProvider>
+                </NavigationScroll>
+              </Locales>
+            </RTLLayout>
+          </ThemeCustomization>
+        </ConfigProvider>
+      </PersistGate>
+    </Provider>
+  );
+}
+
+ProviderWrapper.propTypes = {
+  children: PropTypes.node
+};

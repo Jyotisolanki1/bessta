@@ -1,0 +1,24 @@
+.roulette-container {
+    position: relative;
+    width: 300px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+  }
+  
+  .roulette-wheel {
+    width: 100%;
+    height: 100%;
+    transition: transform 4s ease-out; /* Adjust duration and timing function */
+  }
+  
+  .roulette-segment {
+    /* Style each segment as needed */
+  }
+  
+  button {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+  }
+  

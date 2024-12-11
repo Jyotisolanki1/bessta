@@ -1,0 +1,364 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable import/newline-after-import */
+/* eslint-disable no-undef */
+/* eslint-disable consistent-return */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-nested-ternary */
+import React, { useState, useEffect, useCallback } from 'react';
+import { Button, Dialog, DialogContent, DialogContentText, Slide, Grid, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import '../../../../styles/extra.css';
+import { getUsers, getWinnerList } from 'store/slices/events';
+import { useDispatch } from 'store';
+import { openSnackbar } from 'store/slices/snackbar';
+import { useReactMediaRecorder } from 'react-media-recorder';
+const wheelImage = '/assets/images/wheelImage.png';
+const cracker = '/assets/images/cracker.gif';
+const girl = '/assets/images/girl.gif';
+const logoSpin = '/assets/images/logoSpin.png';
+
+const Transition = React.forwardRef((props, ref) => <Slide direction="down" ref={ref} {...props} />);
+
+const WheelSpin = ({ open, close, item }) => {
+  const dispatch = useDispatch();
+  const [statusnew, setStatus] = useState(1);
+  const [spin, setSpin] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [countdown, setCountdown] = useState(5);
+  const [user, setUser] = useState([]);
+  const [winnerList, setWinnerList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [continuespin, setcontinue] = useState(0);
+
+  const downloadRecordingPath = 'Screen_Recording_Demo';
+  const downloadRecordingType = 'mp4';
+  const { status, startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({ screen: true });
+
+  const downloadRecording = useCallback(() => {
+    const pathName = `${downloadRecordingPath}_${Date()}.${downloadRecordingType}`;
+    try {
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(mediaBlobUrl, pathName);
+      } else {
+        const link = document.createElement('a');
+        link.href = mediaBlobUrl;
+        link.download = pathName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, [mediaBlobUrl]);
+
+  const handleSpinClick = useCallback(() => {
+    setCountdown(5);
+    setTimeout(() => {
+      setCountdown(5);
+      setSpin(false);
+      setStatus(4);
+    }, 10000);
+    setcontinue((prev) => prev + 1);
+    setStatus(3);
+    setSpin(true);
+  }, []);
+
+  useEffect(() => {
+    if (!spin && continuespin > 0) {
+      setStatus(2);
+    }
+  }, [spin, continuespin]);
+
+  useEffect(() => {
+    if (spin) {
+      const interval = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * user.length);
+        setSelectedUser(user[randomIndex]);
+      }, 10);
+      return () => clearInterval(interval);
+    }
+  }, [spin, user]);
+
+  useEffect(() => {
+    if (mediaBlobUrl) {
+      if (status === 4) setStatus(1);
+      downloadRecording();
+    }
+  }, [mediaBlobUrl, downloadRecording]);
+
+  useEffect(() => {
+    if (statusnew === 2) {
+      const countdownInterval = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+      if (continuespin === 0) {
+        if (countdown === 0) {
+          clearInterval(countdownInterval);
+          setStatus(4);
+        }
+      } else if (continuespin > 0 && !spin && countdown === 0) {
+        clearInterval(countdownInterval);
+        setStatus(4);
+      }
+
+      return () => clearInterval(countdownInterval);
+    }
+  }, [statusnew, countdown]);
+
+  const fetchData = async () => {
+    try {
+      const resWinner = await dispatch(getWinnerList(item?._id));
+      if (resWinner?.success) {
+        setWinnerList(resWinner.data.winners);
+        setTimeout(() => {
+          setStatus(2);
+          setSpin(false);
+        }, 5000);
+      } else {
+        setLoading(false);
+        dispatch(
+          openSnackbar({
+            open: true,
+            message: resWinner.message,
+            variant: 'alert',
+            alert: { color: 'error' },
+            close: false,
+            anchorOrigin: { vertical: 'top', horizontal: 'right' }
+          })
+        );
+      }
+    } catch (error) {
+      setLoading(false);
+      dispatch(
+        openSnackbar({
+          open: true,
+          message: 'Something went wrong. Please try again later.',
+          variant: 'alert',
+          alert: { color: 'error' },
+          close: false,
+          anchorOrigin: { vertical: 'top', horizontal: 'right' }
+        })
+      );
+    }
+  };
+
+  const callApi = async () => {
+    setLoading(true);
+    try {
+      const res = await dispatch(getUsers(item?._id));
+      if (res?.success) {
+        setLoading(false);
+        setUser(res.data.userList);
+        fetchData();
+        dispatch(
+          openSnackbar({
+            open: true,
+            message: res.message,
+            variant: 'alert',
+            alert: { color: 'success' },
+            close: false,
+            anchorOrigin: { vertical: 'top', horizontal: 'right' }
+          })
+        );
+        setStatus(3);
+        setSpin(true);
+      } else {
+        setLoading(false);
+        dispatch(
+          openSnackbar({
+            open: true,
+            message: res.message,
+            variant: 'alert',
+            alert: { color: 'error' },
+            close: false,
+            anchorOrigin: { vertical: 'top', horizontal: 'right' }
+          })
+        );
+      }
+    } catch (error) {
+      setLoading(false);
+      dispatch(
+        openSnackbar({
+          open: true,
+          message: 'Something went wrong. Please try again later.',
+          variant: 'alert',
+          alert: { color: 'error' },
+          close: false,
+          anchorOrigin: { vertical: 'top', horizontal: 'right' }
+        })
+      );
+    }
+  };
+
+  const renderStatusContent = () => {
+    switch (statusnew) {
+      case 1:
+        return (
+          <div className="main">
+            {loading ? (
+              <div className="custom-button-start" style={{ cursor: 'progress !important' }}>
+                <p className="userDiv">Please wait ...</p>
+              </div>
+            ) : (
+              <>
+                {!mediaBlobUrl && (
+                  <div className="custom-button-start" onClick={callApi}>
+                    <p className="userDiv">Start</p>
+                  </div>
+                )}
+                {!mediaBlobUrl && (status === 'idle' || status === 'stopped') && (
+                  <div className="custom-button-start" style={{ top: '60%' }} onClick={startRecording}>
+                    <p className="userDiv">Start Recording</p>
+                  </div>
+                )}
+                {mediaBlobUrl && status === 'stopped' && (
+                  <div className="custom-button-start" onClick={downloadRecording}>
+                    <p className="userDiv">Download</p>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        );
+      case 2:
+        return (
+          <div className="main">
+            <div className="countnumber">{countdown}</div>
+          </div>
+        );
+      case 3:
+        return (
+          <div className="main">
+            <div className="custom-button">
+              <p className="userDiv">{selectedUser}</p>
+            </div>
+            <img
+              className={`spinner ${spin ? 'spin-animation' : ''}`}
+              src={wheelImage}
+              alt="Spinner"
+              style={{ position: 'absolute', left: '60%', top: '7%' }}
+            />
+            <div>
+              {status === 'recording' && (
+                <button type="button" onClick={stopRecording}>
+                  Stop Recording
+                </button>
+              )}
+              {mediaBlobUrl && status === 'stopped' && (
+                <Button
+                  size="small"
+                  onClick={downloadRecording}
+                  type="primary"
+                  icon="download"
+                  className="downloadRecording margin-left-sm"
+                >
+                  Download
+                </Button>
+              )}
+            </div>
+          </div>
+        );
+      case 4:
+        return (
+          <div className="container">
+            <div className="left">
+              <div className="girl">
+                <img src={girl} style={{ borderRadius: '50%' }} width={300} height={300} />
+              </div>
+              <div>
+                <img src={cracker} width={700} height={700} />
+              </div>
+              <div>
+                {status === 'recording' && (
+                  <button type="button" onClick={stopRecording}>
+                    Stop Recording
+                  </button>
+                )}
+                {mediaBlobUrl && status === 'stopped' && (
+                  <Button
+                    size="small"
+                    onClick={downloadRecording}
+                    type="primary"
+                    icon="download"
+                    className="downloadRecording margin-left-sm"
+                  >
+                    Download
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="right text">
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <img src={logoSpin} width={100} height={100} />
+              </div>
+              <h1 style={{ fontSize: '4em', textAlign: 'center', color: 'rgb(113 63 18 )' }}>Congratulations</h1>
+              {continuespin === 0 && (
+                <div className="winnerList">
+                  <p className="winnerRank">Third Winner</p>
+                  <h1>{`${winnerList[2].firstname} ${winnerList[2]?.lastname}`}</h1>
+                  <p className="Email_prize">
+                    {winnerList[2]?.email.replace(/^(.)(.*)(.@.*)/, (...a) => a[1] + a[2].replace(/./g, '*') + a[3])}
+                  </p>
+                  <p className="Email_prize">{winnerList[2]?.description}</p>
+                  <Button onClick={handleSpinClick} style={{ backgroundColor: '#713f12', color: 'white' }}>
+                    continue
+                  </Button>
+                </div>
+              )}
+              {continuespin === 1 && (
+                <div className="winnerList">
+                  <p className="winnerRank">Second Winner</p>
+                  <h1>{`${winnerList[1]?.firstname} ${winnerList[1]?.lastname}`}</h1>
+                  <p className="Email_prize">
+                    {winnerList[1]?.email.replace(/^(.)(.*)(.@.*)/, (...a) => a[1] + a[2].replace(/./g, '*') + a[3])}
+                  </p>
+                  <p className="Email_prize">{winnerList[1].description}</p>
+                  <Button onClick={handleSpinClick} style={{ backgroundColor: '#713f12', color: 'white' }}>
+                    continue
+                  </Button>
+                </div>
+              )}
+              {continuespin === 2 && (
+                <div className="winnerList">
+                  <p className="winnerRank">First Winner</p>
+                  <h1>{`${winnerList[0]?.firstname} ${winnerList[0].lastname}`}</h1>
+                  <p className="Email_prize">
+                    {winnerList[0]?.email.replace(/^(.)(.*)(.@.*)/, (...a) => a[1] + a[2].replace(/./g, '*') + a[3])}
+                  </p>
+                  <p className="Email_prize">{winnerList[0]?.description}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Dialog fullScreen open={open} TransitionComponent={Transition} keepMounted aria-describedby="alert-dialog-slide-description">
+      <DialogContent sx={{ justifyContent: 'center' }} className="background_color">
+        <DialogContentText id="alert-dialog-slide-description">
+          <Grid container spacing={3}>
+            <Grid item xs={6} />
+            <Grid item xs={6}>
+              <IconButton color="black" onClick={() => close(false)} aria-label="close" sx={{ position: 'absolute', right: 8, top: 8 }}>
+                <CloseIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            {renderStatusContent()}
+          </Grid>
+        </DialogContentText>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default WheelSpin;

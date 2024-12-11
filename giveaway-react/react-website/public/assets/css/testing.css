@@ -1,0 +1,264 @@
+@media (min-width: 320px) and (max-width: 480px) {
+  /* .content-title{
+   margin-left: 8px !important;
+  } */
+
+  .newinputcontainerstyling {
+    max-width: 100%;
+  }
+
+  .text {
+    padding: 10px !important;
+    /* Reduced padding for mobile */
+    line-height: 24px !important;
+    /* Tighter line spacing for mobile */
+    font-size: 10px !important;
+    /* Smaller font size for mobile */
+    /* Adding a small margin to avoid text sticking to edges */
+    margin-left: 0px !important;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100vw !important;
+  }
+
+  /* .fact-two {
+  padding: 1px;
+  margin-top: -69%;
+} */
+
+  .aboutPtag {
+    font-size: 1rem !important;
+    line-height: 1.6;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .overlay {
+    width: 100% !important;
+    height: 38% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background: #161617; */
+    background-size: 3px 3px;
+    z-index: 2;
+  }
+
+  .content-container {
+    margin-left: 0px !important;
+    /* line-height: 2%!important; */
+  }
+
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 24px !important;
+  }
+
+  .newdesign {
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  /* .newFont{
+  font-size: 17px !important;
+ } */
+
+  .member-grid {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr) !important;
+    margin: -1%;
+  }
+
+  .container-small {
+    width: 500px !important;
+    margin: 0 auto;
+  }
+
+  .video-one__content__title {
+    font-size: 20px !important;
+  }
+
+  /* .mouse-wheel {
+  /* height: 600vh; */
+  /* position: relative !important; */
+  /* }  */
+
+  .mynewtagline {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: var(--nisoz-color);
+    font-weight: 400;
+    margin: 0 0 6px;
+    position: relative
+  }
+
+  /* h2.mynewtitleforaccesslevel{
+  text-align: center !important;
+  margin-left: 22% ;
+ } */
+
+  h2.mypastwinners {
+    text-align: center !important;
+    margin-left: 29% !important;
+    margin-top: -146px !important;
+    font-size: 30px !important;
+  }
+
+  .video-one__banner {
+    border: 3px solid #f28500;
+    height: 360px !important;
+    /* top: 1% !important; */
+  }
+
+  .swiper-slide .title {
+    font-size: 23px !important;
+  }
+
+  /* h6.section-plan__tagline {
+  margin-left: 70px !important;
+} */
+
+  .pricing-table .container .mb-5 {
+    margin-bottom: -3rem !important;
+  }
+
+
+  /* .pricing-table .container h5.section-title__tagline{
+  text-align: center !important;
+  margin-left: 99px !important ;
+ }
+ .pricing-table .container h2.section-title__title{
+  text-align: center !important;
+  margin-left: 87px !important ;
+ } */
+
+
+  .newInvestorclubstyling {
+    margin: -21px -25% 0% 5% !important;
+  }
+
+  h5.privilegeTitle {
+    padding: 0px !important;
+  }
+
+  h2.mynewtitleformemebership {
+    text-align: center;
+    margin-left: -30%;
+  }
+
+  /* h2.fourthcominggiveaway{
+  text-align: center ;
+  margin-left: 5%  ;
+ } */
+
+  /* .lastimgofswiper img{
+  margin-top: -40px !important;
+ } */
+
+  /* .main-footer__navmenu {
+  position: relative;
+  color: white;
+} */
+  .textcenter {
+    /* text-align:right; */
+    /* margin-right: 17%; */
+  }
+
+  .textcenterexpert {
+    text-align: right;
+    margin-right: 29%;
+  }
+
+  i.fa-solid.fa-users::before {
+    text-align: center;
+  }
+
+  i.fa-solid.fa-users:after {
+    text-align: center;
+  }
+
+  .pricingtablecontainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 12px;
+    padding-top: 20px;
+    /* border:1px solid #f28500 */
+  }
+
+  .newnavbarmenu {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px;
+    margin: 10px;
+  }
+
+  .marginfaqsection {
+    margin: 1% !important;
+  }
+
+  .faq-section {
+    margin: 23px !important;
+  }
+
+  .starimg {
+    height: 30;
+    width: 30;
+  }
+
+  .toggle-arrow {
+    height: 20PX !important;
+    width: 20PX !important;
+  }
+
+  /* .signupform{
+  width:70% !important
+} */
+  /* .signupformwp{
+  width:70% !important;
+  /* margin-left: -50px !important; */
+}
+
+*/ .paymentcard {
+  width: 80% !important;
+  margin: 20px !important;
+}
+
+.justchangemargin {
+  margin-left: 6%;
+}
+
+.textcenterkrnahai {
+  text-align: center !important;
+}
+
+.signupbuttonbysagar {
+  /* width: 70% !important; */
+  margin: 10px !important;
+}
+
+.signupformpassword {
+  display: flex !important;
+  position: relative !important;
+  border: none !important;
+}
+
+.eyeiconclass {
+  margin-left: -40px !important;
+}
+
+.resposndiveh4 {
+  font-size: 16px;
+}
+
+.responsivesignup {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+
+
+.newdesignofsectiontitlefeature {
+  text-align: right;
+  margin-right: 22px;
+}

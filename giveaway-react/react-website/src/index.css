@@ -1,0 +1,624 @@
+.react-read-more-read-less {
+  color: #f28500 !important;
+}
+
+.react-read-more-read-less-more {
+  color: #f28500 !important;
+}
+
+.section-plan {
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #f28500;
+  text-align: center;
+  margin-top: 20px;
+
+}
+
+.e-btn-active {
+  display: inline-block;
+  height: 42px;
+  line-height: 52px;
+  text-align: center;
+  padding: 0 25px;
+  color: #fff;
+  background: red;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: .4s all ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* cursor: not-allowed; */
+}
+
+.section-plan__tagline {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: #717175;
+  font-weight: 400;
+  margin: 0 0 6px;
+  position: relative;
+  text-align: center;
+}
+
+.nav-tabs .nav-link {
+  /* margin: 0 15px !important; */
+  background: 0 0;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: #717175 !important;
+}
+
+.nav-link.active {
+  background-color: #f28500 !important;
+  color: white !important;
+}
+
+.fooote-btn {
+  border: 1px solid #f28500;
+  background: #f28500;
+  padding: 0 12%;
+  margin: 5px 0;
+  border-radius: 50px;
+}
+
+.fooote-btn:hover {
+  border: 1px solid #f28500;
+  background: transparent;
+  padding: 0 40px;
+  margin: 5px 0;
+  border-radius: 50px;
+}
+
+.nav-link {
+  display: block;
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  font-size: var(--bs-nav-link-font-size);
+  font-weight: var(--bs-nav-link-font-weight);
+  /* color: var(--bs-nav-link-color); */
+  text-decoration: none;
+  background: 0 0;
+  border: 0;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  vertical-align: middle;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.custom-select .arrow-down {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #555;
+  cursor: pointer;
+}
+
+.custom-select .arrow-down:hover {
+  border-top-color: #333;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  /* Display number input as a regular text input */
+}
+
+.card-active {
+  -webkit-box-shadow: 0px 7px 20px 10px rgba(128, 128, 128, 0.88);
+  -moz-box-shadow: 0px 7px 20px 10px rgba(128, 128, 128, 0.88);
+  box-shadow: 0px 7px 20px 10px rgba(128, 128, 128, 0.88);
+  border-radius: 10px;
+}
+
+.card-pricingtable {
+  padding: 0 10px;
+  /* min-width: 250px; */
+  /* flex: 1 0 100%; */
+  border-radius: 0 0 10px 10px;
+  /* background: #f3f4f8; */
+  padding: 38px;
+  /* padding: 32px 25px; */
+  padding: 25px;
+  border: 1px solid #dfdfdf;
+  background: #f28500;
+  border-top: 6px solid #f28500;
+  color: white;
+}
+
+.card-pricingtable-head {
+  text-align: center;
+  padding: 4px 0;
+  background: black;
+  color: #f28500;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-pricingtable h2 li span h6 li a {
+  color: #000 !important;
+}
+
+.card-pricingtable h2 {
+  color: #000;
+}
+
+.card-pricingtable span {
+  color: #000;
+}
+
+.card-pricingtable h6 {
+  color: #000;
+}
+
+.card-pricingtable li {
+  color: #000;
+  align-items: center;
+}
+
+.card-pricingtable li:hover {
+  color: #000;
+}
+
+.card-pricingtable a {
+  color: #f28500;
+  /* background-color: #fff; */
+  background-color: #000;
+  /* border: 2px solid #000; */
+}
+
+.card-pricingtable a:hover {
+  color: #f28500;
+  background-color: #000;
+  /* background-color: #fff; */
+  /* border: 2px solid #000; */
+}
+
+.color-list {
+  color: #f28500 !important;
+}
+
+.pricingtablecontainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  padding-top: 20px;
+  align-items: end;
+}
+
+ul.populars {
+  padding: 0;
+  list-style: none;
+}
+
+.logos img {
+  aspect-ratio: 3/2;
+  /* object-fit: contain;*/
+  mix-blend-mode: color-burn !important;
+}
+
+.our-logos img {
+  width: 302px;
+  height: 216px;
+  aspect-ratio: 3/2;
+  /* object-fit: contain; */
+  /* mix-blend-mode: color-burn !important; */
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow: none;
+  border: #ced4da;
+  background-color: #000;
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .form-2-wrapper {
+    background: #000000cf;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .logos img {
+
+    aspect-ratio: 3/2;
+    /* object-fit: contain;*/
+    mix-blend-mode: color-burn !important;
+  }
+
+}
+
+
+
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+.about-us {
+  background-color: white;
+  /* light gray background */
+  padding: 0 0 6% 0;
+  /* add some padding to the section */
+}
+
+.about-us h2 {
+  font-size: 50px;
+  /* make the heading larger */
+  font-weight: bold;
+  /* make the heading bold */
+  text-align: center;
+  margin-top: 0;
+  /* remove margin from the top of the heading */
+  padding: 4%;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 6%;
+  width: 100%;
+}
+
+.abouttext {
+  flex-basis: 47%;
+  padding: 0 20px;
+  margin-left: 2%;
+  margin-right: 7%;
+}
+
+.abouttext h3 {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 7%;
+}
+
+.aboutPtag {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #333;
+}
+
+
+.image {
+  flex-basis: 44%;
+  height: 35%;
+}
+
+
+
+
+/* @media (max-width:1350px) {
+  .content {
+      flex-direction: column;
+  } */
+.image img {
+  width: 99%;
+  /* height: 40rem; */
+  object-fit: cover;
+  display: block;
+  bottom: 25px;
+  position: relative;
+  right: 25px;
+}
+
+/* .image, .text {
+      flex-basis: 100%;
+  } */
+
+.image {
+  margin-bottom: 20px;
+}
+
+
+@media (max-width: 480px) {
+
+  .text h3 {
+    font-size: 24px;
+  }
+
+  .text p {
+    font-size: 16px;
+  }
+}
+
+.faq-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #717175; */
+
+}
+
+.faq-title {
+  padding: "3%";
+  flex-grow: 1;
+  margin-left: 10px;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.buttonFAQ {
+  background-color: #FFA500;
+  border: none;
+  color: black;
+  padding: 1% 5%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Centers content within the button */
+  margin: 2% auto;
+  /* Centers the button horizontally */
+  width: 39%;
+  /* Adjusts button width */
+}
+
+
+.buttonFAQ:hover {
+  background-color: #FFD700;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.buttonFAQ:active {
+  background-color: #FFC300;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.down-arrow {
+  cursor: pointer;
+}
+
+
+/*Investorsclub*/
+.Investorsclub {
+  margin: 0 5% 0% 5%;
+}
+
+.paymentWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110vh;
+  background-color: #f5f5f5;
+}
+
+.paymentContainer {
+  width: 380px;
+  /* Reduced width for a compact look */
+  padding: 20px;
+  /* Less padding around the container */
+  background-color: #ffa500;
+  /* Bright orange background */
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+.paymentDetails {
+  text-align: center;
+}
+
+.billingInfo {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 15px;
+  /* Slightly smaller font size */
+  margin-bottom: 15px;
+  /* Reduced bottom margin */
+  color: #000;
+}
+
+h2 {
+  font-size: 16px;
+  /* Smaller font size for headings */
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 10px;
+  /* Reduced margin */
+}
+
+.cardInput,
+.postalCodeInput {
+  width: 100%;
+  margin: 8px 0;
+  /* Reduced margin between fields */
+  font-size: 14px;
+  /* Smaller font size in input fields */
+  border-radius: 6px;
+  border: 1px solid #333;
+  background-color: #ffffff;
+  color: #333;
+  transition: border-color 0.2s ease;
+}
+
+.cardInput:focus,
+.postalCodeInput:focus {
+  border-color: #ff6f00;
+  outline: none;
+}
+
+.errorText {
+  color: #ff0000;
+  font-size: 12px;
+  /* Smaller font for error messages */
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.paymentButton {
+  width: 100%;
+  padding: 10px;
+  /* Reduced padding inside button */
+  font-size: 14px;
+  /* Slightly smaller font size for button text */
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  /* Black button */
+  border: none;
+  border-radius: 6px;
+  /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.paymentButton:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.paymentButton:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+.creditImage {
+  margin-top: 15px;
+  /* Reduced spacing above the image */
+  width: 100%;
+}
+
+.paymentWarning {
+  margin-top: 10px;
+  /* Less spacing above the warning */
+  font-size: 12px;
+  /* Smaller font for the warning */
+  color: #ff0000;
+  /* Bright red warning text */
+  text-align: center;
+  font-weight: 600;
+}
+
+
+.postalCodeInput::placeholder {
+  color: #000;
+  /* Black color, similar to previous design */
+  font-weight: 500;
+  /* Medium font weight */
+  font-size: 14px;
+  /* Font size similar to input text */
+  opacity: 0.7;
+  /* Optional: make it slightly faded for a hint effect */
+  font-family: Arial;
+}
+
+.loginOurPartner {
+  font-size: "400px !impo";
+}
+
+.postalCodeInput::placeholder {
+  font-size: 16px;
+  color: #000;
+  line-height: 50px;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  margin: 0 !important;
+}
